@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Article
+from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 
 # Create your views here.
@@ -18,9 +18,13 @@ def detail(request, id):
     article = Article.objects.get(id=id)
     form = CommentForm()
 
+
+    comments = Comment.objects.filter(article_id=id)
+
     context = {
         'article': article,
         'form': form,
+        'comments': comments
     }
     return render(request, 'detail.html', context)
 
