@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>{{article.title}}</h1>
-<p>{{article.content}}</p>
+    <h1>{{article.title}}</h1>
+    <p>{{article.content}}</p>
+    <hr>
+
+    <!-- 부모테이블을 기준으로 속해있는 객체 모두 출력 
+     article.comment_set.all-->
+     <!-- article과 관계가 형성되어있어 따로 url만들지 않아도 출력가능 -->
+    {% for comment in article.comment_set.all %}
+        <li>{{comment.content}}</li>
+    {% endfor %}
+
 {% endblock %}
